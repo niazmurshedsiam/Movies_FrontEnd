@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import { moviesDTO } from './movies/movies.module';
 import MovieList from './movies/MovieList/MovieList';
+import IndividualMovies from './movies/IndividualMovies/IndividualMovies';
 
 
 function App() {
@@ -23,6 +24,12 @@ function App() {
       poster: "https://upload.wikimedia.org/wikipedia/en/3/39/Soul_%282020_film%29_poster.jpg"
     }
   ];
+  const test: moviesDTO =
+  {
+    id: 5,
+    title: "Heart of Stone",
+    poster: "https://upload.wikimedia.org/wikipedia/en/thumb/0/05/Heart_of_stone_poster.png/220px-Heart_of_stone_poster.png"
+  }
 
   const upcomingRelease: moviesDTO[] = [
     {
@@ -33,7 +40,7 @@ function App() {
   ]
   return (
     <>
-
+      <IndividualMovies {...test} ></IndividualMovies>
       <h3>In Theaters</h3>
       <MovieList Movies={InTheaters}></MovieList>
       <h3>Upcoming Release</h3>

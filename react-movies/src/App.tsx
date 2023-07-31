@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import { landingPageDTO, moviesDTO } from './movies/movies.module';
 import MovieList from './movies/MovieList/MovieList';
+import Button from './utils/Button/Button';
 
 
 function App() {
@@ -41,13 +42,13 @@ function App() {
   }, [])
 
   return (
-    <>
-
+    <div className='container'>
+      <Button>Whatever Text</Button>
       <h3>In Theaters</h3>
       <MovieList Movies={movies.inTheaters}></MovieList>
       <h3>Upcoming Release</h3>
       <MovieList Movies={movies.upcomingRelease}></MovieList>
-    </>
+    </div>
   );
 }
 

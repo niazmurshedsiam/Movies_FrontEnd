@@ -8,7 +8,20 @@ export default function Menu() {
                         <li className="nav-item">
                             <a className="nav-link" href="/genres">Genres</a>
                         </li>
+                        <li className="nav-item">
+                            <a className="nav-link" href="/actors">Actors</a>
+                        </li>
+                        <li className="nav-item">
+                            <a className="nav-link" href="/movieTheaters">Movie Theaters</a>
+                        </li>
+                        <li className="nav-item">
+                            <a className="nav-link" href="/movies/filter">Filter Movies</a>
+                        </li>
+                        <li className="nav-item">
+                            <a className="nav-link" href="/movies/create">Create Movies</a>
+                        </li>
                     </ul>
+
                 </div>
             </div>
         </nav>

@@ -15,18 +15,18 @@ const routes = [
     { path: "/", component: LandingPage, exact: true },
     { path: "/genres", component: IndexGenres, exact: true },
     { path: "/genres/create", component: CreateGenres },
-    { path: "/genres/edit", component: EditGenres },
+    { path: "/genres/edit/:id(\\d+)", component: EditGenres },
 
     { path: "/actors", component: IndexActor, exact: true },
     { path: "/actors/create", component: CreateActor },
-    { path: "/actors/edit", component: EditGenres },
+    { path: "/actors/edit/:id(\\d+)", component: EditGenres },
 
     { path: "/movieTheaters", component: IndexMovieTheaters, exact: true },
     { path: "/movieTheaters/create", component: CreateMovieTheaters },
-    { path: "/movieTheaters/edit", component: EditMovieTheaters },
+    { path: "/movieTheaters/edit/:id(\\d+)", component: EditMovieTheaters },
 
     { path: "/movies/create", component: CreateMovies },
-    { path: "/movies/edit", component: EditMovies },
+    { path: "/movies/edit/:id(\\d+)", component: EditMovies },
     { path: "/movies/filter", component: FilterMovies }
 ]
 export default routes;

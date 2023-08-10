@@ -11,18 +11,22 @@ export default function CreateGenres() {
             <Formik initialValues={{
                 name: ""
             }}
-                onSubmit={value => {
+                onSubmit={async value => {
+                    await new Promise(r => setTimeout(r, 3000))
                     console.log(value);
                 }}
                 validationSchema={Yup.object({
-                    name: Yup.string().required("This field is required")
+                    name: Yup.string().required("This field is required").firstLetterUpperCase()
                 })}
             >
-                <Form>
-                    <TextField field="name" displayField="Name"></TextField>
-                    <Button type="submit">Save Change</Button>
-                    <Link className="btn btn-secondary" to="/genres">Cancel</Link>
-                </Form>
+                {(formikProps) => (
+                    <Form>
+                        <TextField field="name" displayField="Name"></TextField>
+                        <Button disabled={formikProps.isSubmitting} type="submit">Save Change</Button>
+                        <Link className="btn btn-secondary" to="/genres">Cancel</Link>
+                    </Form>
+                )}
+
 
             </Formik>
 

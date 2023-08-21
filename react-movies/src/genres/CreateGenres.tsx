@@ -1,34 +1,17 @@
-import { useHistory } from "react-router";
-import Button from "../utils/Button/Button";
-import { Formik, Form } from "formik";
-import { Link } from "react-router-dom";
-import * as Yup from "yup";
-import TextField from "../form/TextField";
+// import { useHistory } from "react-router";
+import GenreForm from "./GenreForm";
 export default function CreateGenres() {
-    const history = useHistory();
+    // const history = useHistory();
     return (
         <>
-            <Formik initialValues={{
-                name: ""
-            }}
+
+            <h3>Create Genre</h3>
+            <GenreForm model={{ name: '' }}
                 onSubmit={async value => {
-                    await new Promise(r => setTimeout(r, 3000))
+                    await new Promise(r => setTimeout(r, 1))
                     console.log(value);
                 }}
-                validationSchema={Yup.object({
-                    name: Yup.string().required("This field is required").firstLetterUpperCase()
-                })}
-            >
-                {(formikProps) => (
-                    <Form>
-                        <TextField field="name" displayField="Name"></TextField>
-                        <Button disabled={formikProps.isSubmitting} type="submit">Save Change</Button>
-                        <Link className="btn btn-secondary" to="/genres">Cancel</Link>
-                    </Form>
-                )}
-
-
-            </Formik>
+            ></GenreForm>
 
         </>
     )

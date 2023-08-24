@@ -4,6 +4,7 @@ import Button from "../utils/Button/Button";
 import { Link } from "react-router-dom";
 import { actorCreationDTO } from "./actors.model";
 import * as Yup from 'yup';
+import DateField from "../form/DateField";
 
 export default function ActorForm(props: actorFormProps) {
     return (
@@ -11,14 +12,16 @@ export default function ActorForm(props: actorFormProps) {
             initialValues={props.model}
             onSubmit={props.onSubmit}
             validationSchema={Yup.object({
-                name: Yup.string().required('This field is required').firstLetterUpperCase()
+                name: Yup.string().required('This field is required').firstLetterUpperCase(),
+                dateOfBirth: Yup.date().nullable().required('This field is required')
             })}
         >
             {(formikProps) => (
                 <Form>
                     <TextField displayField="Name" field="name"></TextField>
+                    <DateField displayName="Date Of Birth" field="dateOfBirth"></DateField>
                     <Button disabled={formikProps.isSubmitting} type="submit">Save Changes</Button>
-                    <a href="/actor" className="btn btn-secondary">Cancel</a>
+                    <Link to="/actor" className="btn btn-secondary">Cancel</Link>
                 </Form>
             )}
         </Formik>

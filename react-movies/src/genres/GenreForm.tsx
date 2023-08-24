@@ -14,7 +14,7 @@ export default function GenreForm(props: genreFormProps) {
         >
             {(formikProps) => (
                 <Form>
-                    <TextField field="name" displayField="Name"></TextField>
+                    <TextField field="name" displayName="Name"></TextField>
                     <Button disabled={formikProps.isSubmitting} type="submit">Save Change</Button>
                     <Link className="btn btn-secondary" to="/genres">Cancel</Link>
                 </Form>

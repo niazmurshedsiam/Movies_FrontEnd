@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 import { actorCreationDTO } from "./actors.model";
 import * as Yup from 'yup';
 import DateField from "../form/DateField";
+import ImageField from "../form/ImageField";
+
 
 export default function ActorForm(props: actorFormProps) {
     return (
@@ -18,8 +20,9 @@ export default function ActorForm(props: actorFormProps) {
         >
             {(formikProps) => (
                 <Form>
-                    <TextField displayField="Name" field="name"></TextField>
+                    <TextField displayName="Name" field="name"></TextField>
                     <DateField displayName="Date Of Birth" field="dateOfBirth"></DateField>
+                    <ImageField displayName="Picture" field="picture" imageURL={props.model.pictureURL} />
                     <Button disabled={formikProps.isSubmitting} type="submit">Save Changes</Button>
                     <Link to="/actor" className="btn btn-secondary">Cancel</Link>
                 </Form>

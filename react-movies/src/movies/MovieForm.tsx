@@ -1,4 +1,4 @@
-import { Formik, FormikHelpers, FormikProps } from "formik";
+import { Form, Formik, FormikHelpers, FormikProps } from "formik";
 import { movieCreationDTO } from "./movies.module";
 import * as Yup from 'yup';
 import TextField from "../form/TextField";
@@ -14,11 +14,12 @@ export default function MovieForm(props: movieFormProps) {
                 initialValues={props.model}
                 onSubmit={props.onSubmit}
                 validationSchema={Yup.object({
-                    name: Yup.string().required('This field is required').firstLetterUpperCase()
+                    title: Yup.string().required('This field is required').firstLetterUpperCase()
                 })}
             >
                 {(formikProps) => (
-                    <form>
+                    <Form>
+
                         <TextField displayName="Title" field="title" />
                         <CheckBoxField displayName="In Theaters" field="inTheaters" />
                         <TextField displayName="Trailer" field="trailer" />
@@ -28,8 +29,8 @@ export default function MovieForm(props: movieFormProps) {
                         />
                         <Button disabled={formikProps.isSubmitting}
                             type='submit'>Save Changes</Button>
-                        <Link to="/actor" className="btn btn-secondary">Cancel</Link>
-                    </form>
+                        <Link className="btn btn-secondary" to="/genres">Cancel</Link>
+                    </Form>
                 )}
             </Formik>
         </>

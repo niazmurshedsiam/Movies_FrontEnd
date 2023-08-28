@@ -20,3 +20,4 @@ export interface landingPageDTO {
     inTheaters?: moviesDTO[];
     upcomingRelease?: moviesDTO[];
 }
+

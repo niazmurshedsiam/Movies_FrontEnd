@@ -7,6 +7,7 @@ import * as Yup from 'yup';
 import DateField from "../form/DateField";
 import ImageField from "../form/ImageField";
 import MarkdownField from "../form/MarkdownField";
+import TypeAheadActors from "../form/TypeAheadActors";
 
 
 export default function ActorForm(props: actorFormProps) {
@@ -25,6 +26,7 @@ export default function ActorForm(props: actorFormProps) {
                     <DateField displayName="Date Of Birth" field="dateOfBirth"></DateField>
                     <ImageField displayName="Picture" field="picture" imageURL={props.model.pictureURL} />
                     <MarkdownField displayName="Biography" field="biography"></MarkdownField>
+                    <TypeAheadActors displayName="Actors" actors={[]}></TypeAheadActors>
                     <Button disabled={formikProps.isSubmitting} type="submit">Save Changes</Button>
                     <Link to="/actor" className="btn btn-secondary">Cancel</Link>
                 </Form>

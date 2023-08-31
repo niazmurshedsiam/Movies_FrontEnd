@@ -1,13 +1,12 @@
 import { Form, Formik, FormikHelpers } from "formik";
-import TextField from "../form/TextField";
-import Button from "../utils/Button/Button";
 import { Link } from "react-router-dom";
-import { actorCreationDTO } from "./actors.model";
+import { actorCreationDTO } from './actors.model'
 import * as Yup from 'yup';
+import TextField from "../form/TextField";
 import DateField from "../form/DateField";
 import ImageField from "../form/ImageField";
 import MarkdownField from "../form/MarkdownField";
-import TypeAheadActors from "../form/TypeAheadActors";
+import Button from "../utils/Button/Button";
 
 
 export default function ActorForm(props: actorFormProps) {
@@ -22,13 +21,16 @@ export default function ActorForm(props: actorFormProps) {
         >
             {(formikProps) => (
                 <Form>
-                    <TextField displayName="Name" field="name"></TextField>
-                    <DateField displayName="Date Of Birth" field="dateOfBirth"></DateField>
-                    <ImageField displayName="Picture" field="picture" imageURL={props.model.pictureURL} />
-                    <MarkdownField displayName="Biography" field="biography"></MarkdownField>
-                    <TypeAheadActors displayName="Actors" actors={[]}></TypeAheadActors>
-                    <Button disabled={formikProps.isSubmitting} type="submit">Save Changes</Button>
-                    <Link to="/actor" className="btn btn-secondary">Cancel</Link>
+                    <TextField displayName="Name" field="name" />
+                    <DateField displayName="Date of Birth" field="dateOfBirth" />
+                    <ImageField displayName="Picture" field="picture"
+                        imageURL={props.model.pictureURL} />
+                    <MarkdownField displayName="Biography" field="biography" />
+
+                    <Button disabled={formikProps.isSubmitting}
+                        type="submit"
+                    >Save Changes</Button>
+                    <Link to="/actors" className="btn btn-secondary">Cancel</Link>
                 </Form>
             )}
         </Formik>
@@ -37,5 +39,5 @@ export default function ActorForm(props: actorFormProps) {
 
 interface actorFormProps {
     model: actorCreationDTO;
-    onSubmit(value: actorCreationDTO, action: FormikHelpers<actorCreationDTO>): void;
+    onSubmit(values: actorCreationDTO, action: FormikHelpers<actorCreationDTO>): void;
 }

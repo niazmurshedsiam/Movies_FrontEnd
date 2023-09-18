@@ -4,24 +4,33 @@ import { genreDTO } from "./genres.model"
 import { urlGenres } from "../endpoints"
 import GenericList from "../utils/GenericList/GenericList";
 import Button from "../utils/Button/Button";
+import Pagination from "../utils/Pagination";
 export default function IndexGenres() {
-    const [genres, setGenre] = useState<genreDTO[]>();
-
+    const [genres, setGenres] = useState<genreDTO[]>();
+    const [totalAmountOfPages, setTotalAmountOfPages] = useState(0);
+    const [recordsPerPage, setRecordsPerPage] = useState(10);
+    const [page, setPage] = useState(1);
     useEffect(() => {
         axios.get(urlGenres)
             .then((response: AxiosResponse<genreDTO[]>) => {
-                setGenre(response.data);
+                const totalAmountOfRecords =
+                    parseInt(response.headers['totalAmountOfRecords'], 10);
+                setTotalAmountOfPages(Math.ceil(totalAmountOfRecords / recordsPerPage));
+                setGenres(response.data);
             })
     }, [])
     return (
         <>
             <h3>Genres</h3>
             <a className="btn btn-primary" href="/genres/create">Create Genres</a>
+            <Pagination currentPage={page} totalAmountOfPages={totalAmountOfPages} onChanged={newPage => setPage(newPage)}></Pagination>
             <GenericList list={genres}>
                 <table className="table table-striped">
                     <thead>
-                        <th></th>
-                        <th>Name</th>
+                        <tr>
+                            <th></th>
+                            <th>Name</th>
+                        </tr>
                     </thead>
                     <tbody>
                         {genres?.map(genre =>

@@ -5,24 +5,31 @@ import { urlGenres } from "../endpoints"
 import GenericList from "../utils/GenericList/GenericList";
 import Button from "../utils/Button/Button";
 import Pagination from "../utils/Pagination";
+import RecordsPerPageSelect from "../utils/RecordsPerPageSelect";
 export default function IndexGenres() {
     const [genres, setGenres] = useState<genreDTO[]>();
     const [totalAmountOfPages, setTotalAmountOfPages] = useState(0);
-    const [recordsPerPage, setRecordsPerPage] = useState(10);
+    const [recordsPerPage, setRecordsPerPage] = useState(5);
     const [page, setPage] = useState(1);
     useEffect(() => {
-        axios.get(urlGenres)
+        axios.get(urlGenres, {
+            params: { page, recordsPerPage }
+        })
             .then((response: AxiosResponse<genreDTO[]>) => {
                 const totalAmountOfRecords =
                     parseInt(response.headers['totalAmountOfRecords'], 10);
                 setTotalAmountOfPages(Math.ceil(totalAmountOfRecords / recordsPerPage));
                 setGenres(response.data);
             })
-    }, [])
+    }, [page, recordsPerPage])
     return (
         <>
             <h3>Genres</h3>
             <a className="btn btn-primary" href="/genres/create">Create Genres</a>
+            <RecordsPerPageSelect onChange={amountOfRecords => {
+                setPage(1);
+                setRecordsPerPage(amountOfRecords);
+            }}></RecordsPerPageSelect>
             <Pagination currentPage={page} totalAmountOfPages={totalAmountOfPages} onChanged={newPage => setPage(newPage)}></Pagination>
             <GenericList list={genres}>
                 <table className="table table-striped">

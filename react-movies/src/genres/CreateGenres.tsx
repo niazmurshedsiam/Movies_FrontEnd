@@ -9,29 +9,27 @@ import DisplayErrors from "../utils/DisplayErrors/DisplayErrors";
 export default function CreateGenres() {
     const history = useHistory();
     const [errors, setErrors] = useState<string[]>([]);
+
     async function create(genre: genreCreationDTO) {
         try {
             await axios.post(urlGenres, genre);
             history.push('/genres');
         }
         catch (error) {
-            console.log(error);
             // if (error && error.response) {
-            //     setErrors(error.data);
+            //     setErrors(error.response.data);
             // }
         }
     }
     return (
         <>
-
             <h3>Create Genre</h3>
-            <DisplayErrors errors={errors}></DisplayErrors>
+            <DisplayErrors errors={errors} />
             <GenreForm model={{ name: '' }}
                 onSubmit={async value => {
                     await create(value);
                 }}
-            ></GenreForm>
-
+            />
         </>
     )
 }

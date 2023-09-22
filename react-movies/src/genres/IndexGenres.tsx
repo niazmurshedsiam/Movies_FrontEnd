@@ -44,7 +44,7 @@ export default function IndexGenres() {
                             <tr key={genre.id}>
                                 <td>
                                     <a className="btn btn-success"
-                                        href={`/genres/${genre.id}`}>Edit</a>
+                                        href={`/genres/edit/${genre.id}`}>Edit</a>
                                     <Button className="btn btn-danger">Delete</Button>
                                 </td>
                                 <td>

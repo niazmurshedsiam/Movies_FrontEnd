@@ -22,6 +22,17 @@ export default function IndexGenres() {
                 setGenres(response.data);
             })
     }, [page, recordsPerPage])
+
+    async function deleteGenre(id: number) {
+        try {
+            await axios.delete(`${urlGenres}/${id}`);
+        }
+        catch (error) {
+            if (error) {
+                console.error(error);
+            }
+        }
+    }
     return (
         <>
             <h3>Genres</h3>

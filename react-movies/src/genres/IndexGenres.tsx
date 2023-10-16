@@ -12,6 +12,10 @@ export default function IndexGenres() {
     const [recordsPerPage, setRecordsPerPage] = useState(5);
     const [page, setPage] = useState(1);
     useEffect(() => {
+        loadData();
+    }, [page, recordsPerPage]);
+
+    function loadData() {
         axios.get(urlGenres, {
             params: { page, recordsPerPage }
         })
@@ -21,11 +25,12 @@ export default function IndexGenres() {
                 setTotalAmountOfPages(Math.ceil(totalAmountOfRecords / recordsPerPage));
                 setGenres(response.data);
             })
-    }, [page, recordsPerPage])
+    }
 
     async function deleteGenre(id: number) {
         try {
             await axios.delete(`${urlGenres}/${id}`);
+            loadData();
         }
         catch (error) {
             if (error) {
@@ -56,7 +61,8 @@ export default function IndexGenres() {
                                 <td>
                                     <a className="btn btn-success"
                                         href={`/genres/edit/${genre.id}`}>Edit</a>
-                                    <Button className="btn btn-danger">Delete</Button>
+
+                                    <Button className="btn btn-danger" onClick={() => deleteGenre(genre.id)}>Delete</Button>
                                 </td>
                                 <td>
                                     {genre.name}

@@ -6,6 +6,7 @@ import GenericList from "../utils/GenericList/GenericList";
 import Button from "../utils/Button/Button";
 import Pagination from "../utils/Pagination";
 import RecordsPerPageSelect from "../utils/RecordsPerPageSelect";
+import customConfirm from "../utils/customConfirm";
 export default function IndexGenres() {
     const [genres, setGenres] = useState<genreDTO[]>();
     const [totalAmountOfPages, setTotalAmountOfPages] = useState(0);
@@ -62,7 +63,7 @@ export default function IndexGenres() {
                                     <a className="btn btn-success"
                                         href={`/genres/edit/${genre.id}`}>Edit</a>
 
-                                    <Button className="btn btn-danger" onClick={() => deleteGenre(genre.id)}>Delete</Button>
+                                    <Button className="btn btn-danger" onClick={() => customConfirm(() => deleteGenre(genre.id))}>Delete</Button>
                                 </td>
                                 <td>
                                     {genre.name}

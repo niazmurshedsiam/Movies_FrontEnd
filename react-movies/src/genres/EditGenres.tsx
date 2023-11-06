@@ -1,11 +1,7 @@
-import { useHistory, useParams } from "react-router"
 import GenreForm from "./GenreForm";
-import axios, { AxiosResponse } from "axios";
 import { urlGenres } from "../endpoints";
-import { genreCreationDTO } from "./genres.model";
-import { useEffect, useState } from "react";
-import Loading from "../utils/Loading/Loading";
-import DisplayErrors from "../utils/DisplayErrors/DisplayErrors";
+import { genreCreationDTO, genreDTO } from "./genres.model";
+import EditEntity from "../utils/EditEntity";
 
 export default function EditGenres() {
     // const { id }: any = useParams();
@@ -33,6 +29,18 @@ export default function EditGenres() {
 
     return (
         <>
+
+            <EditEntity<genreCreationDTO, genreDTO>
+                url={urlGenres} entityName="Genres"
+                indexURL="/genres"
+            >
+                {(entity, edit) =>
+                    <GenreForm model={entity}
+                        onSubmit={async value => {
+                            await edit(value);
+                        }}
+                    ></GenreForm>}
+            </EditEntity>
             {/* <h3>Edit Genres</h3>
             <DisplayErrors errors={errors}></DisplayErrors>
             {genre ? <GenreForm model={genre}

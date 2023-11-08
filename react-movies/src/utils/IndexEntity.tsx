@@ -56,7 +56,7 @@ export default function IndexEntity<T>(props: indexEntityProps<T>) {
                 setPage(1);
                 setRecordsPerPage(amountOfRecords);
             }}></RecordsPerPageSelect>
-            <Pagination currentPage={page} totalAmountOfPages={totalAmountOfPages} onChanged={newPage => setPage(newPage)}></Pagination>
+            <Pagination currentPage={page} totalAmountOfPages={totalAmountOfPages} onChange={newPage => setPage(newPage)}></Pagination>
             <GenericList list={entities}>
                 <table className="table table-striped">
                     {props.children(entities!, buttons)}
